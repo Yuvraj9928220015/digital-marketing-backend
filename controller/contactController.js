@@ -1,7 +1,5 @@
 const Contact = require("../model/contactModel");
 
-// @desc   Create new contact/proposal request
-// @route  POST /api/contact
 exports.createContact = async (req, res) => {
     try {
         const { fullName, email, phone, service, message } = req.body;
@@ -35,8 +33,6 @@ exports.createContact = async (req, res) => {
     }
 };
 
-// @desc   Get all contact requests (admin use)
-// @route  GET /api/contact
 exports.getAllContacts = async (req, res) => {
     try {
         const contacts = await Contact.find().sort({ createdAt: -1 });
@@ -55,8 +51,6 @@ exports.getAllContacts = async (req, res) => {
     }
 };
 
-// @desc   Get single contact by ID
-// @route  GET /api/contact/:id
 exports.getContactById = async (req, res) => {
     try {
         const contact = await Contact.findById(req.params.id);

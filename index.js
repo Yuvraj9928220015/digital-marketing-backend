@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const contactRouter = require("./router/contactRouter");
+const serviceRouter = require("./router/serviceRouter");
+const blogRoutes = require("./router/blogRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -20,6 +22,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/contact", contactRouter);
+app.use("/api/services", serviceRouter);
+app.use("/api/blogs", blogRoutes);
 
 // -- 404 Handler --
 app.use((req, res) => {
@@ -45,7 +49,7 @@ const startServer = async () => {
         console.log("MongoDB connected successfully");
 
         app.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
+            console.log(`Server is running on port ${PORT}`);
         });
     } catch (error) {
         console.error("MongoDB connection failed:", error.message);
